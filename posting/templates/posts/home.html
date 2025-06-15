@@ -1,0 +1,20 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+  <h2>Your Posts</h2>
+  <p><a href="{% url 'posts:post-create' %}">+ New Post</a></p>
+  {% for post in posts %}
+    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+      <h3>{{ post.title }}</h3>
+      {% if post.image %}
+        <img src="{{ post.image.url }}" style="max-width:200px;">
+      {% endif %}
+      <p>{{ post.content|linebreaks }}</p>
+      <p>
+        <a href="{% url 'posts:post-update' post.pk %}">Edit</a> |
+        <a href="{% url 'posts:post-delete' post.pk %}">Delete</a>
+      </p>
+    </div>
+  {% empty %}
+    <p>You have no posts yet.</p>
+  {% endfor %}
+{% endblock %}

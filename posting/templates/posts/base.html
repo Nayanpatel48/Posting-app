@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{% block title %}MyBlog{% endblock %}</title>
+  </head>
+  <body>
+    <nav style="text-align:right; padding:10px;">
+      {% if user.is_authenticated %}
+        <a href="{% url 'posts:logout' %}">Logout</a>
+      {% else %}
+        <a href="{% url 'posts:login' %}">Login</a> |
+        <a href="{% url 'posts:register' %}">Register</a>
+      {% endif %}
+    </nav>
+    <div>
+      {% for message in messages %}
+        <p style="color:red;">{{ message }}</p>
+      {% endfor %}
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
