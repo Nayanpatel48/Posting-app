@@ -5,6 +5,7 @@ from django.contrib import messages
 from .forms import RegisterForm, PostForm
 from .models import Post
 
+# this is a function taking incoming web request & returning a response
 def register_view(request):
     form = RegisterForm(request.POST or None)
     if form.is_valid():
